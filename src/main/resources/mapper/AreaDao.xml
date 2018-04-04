@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间为dao-->
+<mapper namespace="com.hanxx.area.dao.AreaDao">
+    <!--查找方法 返回值为 area类型-->
+    <!--根据 priority进行排序，越大优先级越高-->
+    <select id="queryArea" resultType="com.hanxx.area.entity.Area">
+        SELECT  area_id,area_name,priority,create_time,last_edit_time
+        FROM tb_area
+        ORDER BY priority
+        DESC
+    </select>
+    <!--单条查询-->
+    <select id="queryAreaById" resultType="com.hanxx.area.entity.Area">
+        SELECT  area_id,area_name,priority,create_time,last_edit_time
+        FROM tb_area
+        WHERE area_id=#{areaId}
+    </select>
+    <!--增加 使用主键声称策略-->
+    <insert id="insertArea" useGeneratedKeys="true" keyProperty="areaId"
+            keyColumn="area_id" parameterType="com.hanxx.area.entity.Area">
+        INSERT  INTO tb_area(area_name,priority,create_time,last_edit_time)
+        VALUE(#{areaName},#{priority},#{createTime},#{lastEditTime})
+    </insert>
+    <!--修改 先进行判断是否为空-->
+    <update id="updateArea" parameterType="com.hanxx.area.entity.Area">
+        UPDATE tb_area
+        <set>
+            <if test="areaName != null">area_name=#{areaName},</if>
+            <if test="priority != null">priority=#{priority},</if>
+            <if test="lastEditTime != null">last_edit_time=#{lastEditTime},</if>
+        </set>
+        WHERE area_id=#{areaId}
+    </update>
+    
+    <!--删除-->
+    <delete id="deleteAreaById" >
+        DELETE FROM tb_area
+        WHERE area_id = #{areaId}
+    </delete>
+</mapper>
