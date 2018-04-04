@@ -68,7 +68,7 @@ UNIQUE KEY `UK_AREA`(`area_name`)
 </configuration>
 ```
 
- ## 四、数据源配置
+ ## 五、数据源配置
  ```
 jdbc:
   driver: com.mysql.jdbc.Driver
@@ -136,7 +136,7 @@ public class SessionFactoryConfiguration {
     }
 }
 ```
- ## 五、dao实现
+ ## 六、dao实现
  ```
  public interface AreaDao {
     /**
@@ -174,7 +174,7 @@ public class SessionFactoryConfiguration {
     int deleteAreaById(int id);
 }
 ```
- ## 六、Mapper实现
+ ## 七、Mapper实现
  ```
  <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
@@ -220,7 +220,7 @@ public class SessionFactoryConfiguration {
     </delete>
 </mapper>
 ```
- ## 七、单元测试类
+ ## 八、单元测试类
  
  idea选中 dao函数名 alt+enter->创建单元测试类，选中全部方法
 ```
@@ -278,7 +278,7 @@ public class AreaDaoTest {
 }
 ```
 
-## 八、service实现
+## 九、service实现
 事务相关配置类
 ```
 @Configuration
@@ -411,7 +411,7 @@ public class AreaServiceImpl implements AreaService{
 }
 
 ```
-## 九、controller实现
+## 十、controller实现
 ```
 @RestController
 @RequestMapping("/admin")   //根路由
@@ -462,7 +462,7 @@ public class AreaController {
     }
 ```
 
-## 十、异常处理
+## 十一、异常处理
 ```
 //统一的异常处理
 @ControllerAdvice
